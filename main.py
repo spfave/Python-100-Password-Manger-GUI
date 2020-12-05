@@ -6,6 +6,15 @@ from tkinter import *
 
 # ---------------------------- SAVE PASSWORD -------------------------- #
 
+def save_password():
+    """  """
+    website_url = entry_website.get()
+    email_username = entry_email_username.get()
+    password = entry_password.get()
+
+    with open("pasword_vault.txt", mode="a") as file:
+        file.write(f"{website_url} | {email_username} | {password}")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 # Root window
@@ -43,7 +52,8 @@ entry_password.grid(row=2, column=1)
 
 button_password_generate = Button(frame, text="Generate Password")
 button_password_generate.grid(row=2, column=2)
-button_add_password = Button(frame, text="Add", width=33)
+button_add_password = Button(
+    frame, text="Add", width=33, command=save_password)
 button_add_password.grid(row=3, column=1, columnspan=2)
 
 root.mainloop()
