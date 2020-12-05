@@ -8,12 +8,20 @@ from tkinter import *
 
 def save_password():
     """  """
-    website_url = entry_website.get()
+    website = entry_website.get()
     email_username = entry_email_username.get()
     password = entry_password.get()
 
-    with open("pasword_vault.txt", mode="a") as file:
-        file.write(f"{website_url} | {email_username} | {password}")
+    with open("password_vault.txt", mode="a") as file:
+        file.write(f"{website} | {email_username} | {password}\n")
+
+    reset_entry()
+
+
+def reset_entry():
+    entry_password.delete(0, END)
+    entry_website.delete(0, END)
+    entry_website.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
