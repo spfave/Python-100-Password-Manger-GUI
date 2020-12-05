@@ -11,8 +11,8 @@ from tkinter import *
 # Root window
 root = Tk()
 root.title("Password Manager")
-root.minsize(width=400, height=350)
-root.config(padx=20, pady=20)
+root.minsize(width=450, height=375)
+root.config(padx=50, pady=50)
 
 
 # Top canvas with logo
@@ -25,11 +25,11 @@ canvas_logo.pack()
 frame = Frame(root)
 frame.pack()
 
-label_website = Label(frame, text="Website:")
+label_website = Label(frame, text="Website:", anchor="e")
 label_website.grid(row=0, column=0)
-label_email_username = Label(frame, text="Email/Username:")
+label_email_username = Label(frame, text="Email/Username:", anchor="e")
 label_email_username.grid(row=1, column=0)
-label_password = Label(frame, text="Password:")
+label_password = Label(frame, text="Password:", anchor="e")
 label_password.grid(row=2, column=0)
 
 entry_website = Entry(frame, width=40)
