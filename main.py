@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 
 # ---------------------------- PASSWORD GENERATOR --------------------- #
@@ -12,10 +13,13 @@ def save_password():
     email_username = entry_email_username.get()
     password = entry_password.get()
 
-    with open("password_vault.txt", mode="a") as file:
-        file.write(f"{website} | {email_username} | {password}\n")
+    entry_ok = messagebox.askokcancel(
+        title=website, message=f"You entered the following details: \nEmail: {email_username} \nPassword: {password} \nIs this what you want to save?")
 
-    reset_entry()
+    if entry_ok:
+        with open("password_vault.txt", mode="a") as file:
+            file.write(f"{website} | {email_username} | {password}\n")
+        reset_entry()
 
 
 def reset_entry():
