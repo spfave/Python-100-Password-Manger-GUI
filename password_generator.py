@@ -22,7 +22,8 @@ def generate_password():
     [password_list.append(random.choice(numbers)) for _ in range(nr_numbers)]
     [password_list.append(random.choice(symbols)) for _ in range(nr_symbols)]
 
-    password = "".join(random.shuffle(password_list))
+    random.shuffle(password_list)
+    password = "".join(password_list)
     # print(f"Your password is: {password}")
 
     return password
