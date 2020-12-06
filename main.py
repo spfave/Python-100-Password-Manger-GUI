@@ -47,7 +47,7 @@ def reset_entry():
 # Root window
 root = Tk()
 root.title("Password Manager")
-root.minsize(width=450, height=375)
+root.minsize(width=450, height=400)
 root.config(padx=50, pady=50)
 
 
@@ -61,12 +61,12 @@ canvas_logo.pack()
 frame = Frame(root)
 frame.pack()
 
-label_website = Label(frame, text="Website:", anchor="e")
-label_website.grid(row=0, column=0)
-label_email_username = Label(frame, text="Email/Username:", anchor="e")
-label_email_username.grid(row=1, column=0)
-label_password = Label(frame, text="Password:", anchor="e")
-label_password.grid(row=2, column=0)
+label_website = Label(frame, text="Website:")
+label_website.grid(row=0, column=0, sticky="w")
+label_email_username = Label(frame, text="Email/Username:")
+label_email_username.grid(row=1, column=0, sticky="w")
+label_password = Label(frame, text="Password:")
+label_password.grid(row=2, column=0, sticky="w")
 
 entry_website = Entry(frame, width=40)
 entry_website.focus()
