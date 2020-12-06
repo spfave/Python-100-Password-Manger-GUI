@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from password_generator import generate_password
+import json
 import pyperclip
 
 
@@ -23,13 +24,15 @@ def save_password():
         messagebox.showerror(title="Empty Field",
                              message="You can't leave any field empty")
     else:
-        entry_ok = messagebox.askokcancel(
-            title=website, message=f"You entered the following details: \nEmail: {email_username} \nPassword: {password} \nIs this what you want to save?")
-
-        if entry_ok:
-            with open("password_vault.txt", mode="a") as file:
-                file.write(f"{website} | {email_username} | {password}\n")
-            reset_entry()
+        new_data = {
+            website: {
+                "email": email_username,
+                "password": password,
+            },
+        }
+        with open("password_vault.json", mode="w") as file:
+            json.dump(new_data, file, indent=4)
+        reset_entry()
 
 
 def check_validation(website, email_username, password):

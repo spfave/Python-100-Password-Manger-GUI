@@ -1,5 +1,6 @@
 .vscode
 password_vault.txt
+password_vault.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
