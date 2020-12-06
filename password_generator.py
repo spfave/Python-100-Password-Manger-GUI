@@ -11,23 +11,18 @@ symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
 # Functions
 def generate_password():
-    """  """
+    """ Generate random password, with random number of letters, numbers, and symbols """
 
     nr_letters = random.randint(8, 10)
-    nr_symbols = random.randint(2, 4)
     nr_numbers = random.randint(2, 4)
+    nr_symbols = random.randint(2, 4)
 
     password_list = []
-    for _ in range(nr_letters):
-        password_list.append(random.choice(letters))
+    [password_list.append(random.choice(letters)) for _ in range(nr_letters)]
+    [password_list.append(random.choice(numbers)) for _ in range(nr_numbers)]
+    [password_list.append(random.choice(symbols)) for _ in range(nr_symbols)]
 
-    for _ in range(nr_symbols):
-        password_list.append(random.choice(symbols))
+    password = "".join(random.shuffle(password_list))
+    # print(f"Your password is: {password}")
 
-    for _ in range(nr_numbers):
-        password_list.append(random.choice(numbers))
-
-    random.shuffle(password_list)
-    password = "".join(password_list)
-
-    print(f"Your password is: {password}")
+    return password
