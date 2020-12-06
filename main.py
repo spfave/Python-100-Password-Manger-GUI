@@ -73,6 +73,7 @@ canvas_logo.pack()
 frame = Frame(root)
 frame.pack()
 
+# Labels
 label_website = Label(frame, text="Website:")
 label_website.grid(row=0, column=0, sticky="w")
 label_email_username = Label(frame, text="Email/Username:")
@@ -80,20 +81,25 @@ label_email_username.grid(row=1, column=0, sticky="w")
 label_password = Label(frame, text="Password:")
 label_password.grid(row=2, column=0, sticky="w")
 
-entry_website = Entry(frame, width=40)
+# Entries
+entry_website = Entry(frame, width=30)
 entry_website.focus()
-entry_website.grid(row=0, column=1, columnspan=2)
-entry_email_username = Entry(frame, width=40)
+entry_website.grid(row=0, column=1)
+entry_email_username = Entry(frame, width=30)
 entry_email_username.insert(0, "sebastian@email.com")
-entry_email_username.grid(row=1, column=1, columnspan=2)
-entry_password = Entry(frame, width=21)
+entry_email_username.grid(row=1, column=1)
+entry_password = Entry(frame, width=30)
 entry_password.grid(row=2, column=1)
+
+# Buttons
+button_password_search = Button(frame, text="Search", width=15)
+button_password_search.grid(row=0, column=2)
 
 button_password_generate = Button(
     frame, text="Generate Password", command=fill_password)
 button_password_generate.grid(row=2, column=2)
 button_add_password = Button(
-    frame, text="Add", width=33, command=save_password)
+    frame, text="Add", width=41, command=save_password)
 button_add_password.grid(row=3, column=1, columnspan=2)
 
 root.mainloop()
