@@ -1,5 +1,5 @@
 # Password Generator Project
-import random
+from random import randint, choice, shuffle
 
 
 # Constants
@@ -13,17 +13,17 @@ symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 def generate_password():
     """ Generate random password, with random number of letters, numbers, and symbols """
 
-    nr_letters = random.randint(8, 10)
-    nr_numbers = random.randint(2, 4)
-    nr_symbols = random.randint(2, 4)
+    nr_letters = randint(8, 10)
+    nr_numbers = randint(2, 4)
+    nr_symbols = randint(2, 4)
 
-    password_list = []
-    [password_list.append(random.choice(letters)) for _ in range(nr_letters)]
-    [password_list.append(random.choice(numbers)) for _ in range(nr_numbers)]
-    [password_list.append(random.choice(symbols)) for _ in range(nr_symbols)]
+    password_letters = [choice(letters) for _ in range(nr_letters)]
+    password_numbers = [choice(numbers) for _ in range(nr_numbers)]
+    password_symbols = [choice(symbols) for _ in range(nr_symbols)]
 
-    random.shuffle(password_list)
+    password_list = password_letters + password_numbers + password_symbols
+    shuffle(password_list)
+
     password = "".join(password_list)
     # print(f"Your password is: {password}")
-
     return password
