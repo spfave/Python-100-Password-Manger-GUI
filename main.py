@@ -1,12 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
+from password_generator import generate_password
 
 
 # ---------------------------- PASSWORD GENERATOR --------------------- #
+def fill_password():
+    entry_password.insert(0, generate_password())
 
 
 # ---------------------------- SAVE PASSWORD -------------------------- #
-
 def save_password():
     """  """
     website = entry_website.get()
@@ -71,7 +73,8 @@ entry_email_username.grid(row=1, column=1, columnspan=2)
 entry_password = Entry(frame, width=21)
 entry_password.grid(row=2, column=1)
 
-button_password_generate = Button(frame, text="Generate Password")
+button_password_generate = Button(
+    frame, text="Generate Password", command=fill_password)
 button_password_generate.grid(row=2, column=2)
 button_add_password = Button(
     frame, text="Add", width=33, command=save_password)
