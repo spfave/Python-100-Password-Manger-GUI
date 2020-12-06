@@ -15,7 +15,6 @@ def fill_password():
 
 # ---------------------------- SAVE PASSWORD -------------------------- #
 def save_password():
-    """  """
     website = entry_website.get()
     email_username = entry_email_username.get()
     password = entry_password.get()
@@ -30,8 +29,14 @@ def save_password():
                 "password": password,
             },
         }
+
+        with open("password_vault.json", mode="r") as file:
+            data = json.load(file)  # Reading old data
+            data.update(new_data)   # Updating old data with new data
+
         with open("password_vault.json", mode="w") as file:
-            json.dump(new_data, file, indent=4)
+            json.dump(new_data, file, indent=4)  # Saving updated data
+
         reset_entry()
 
 
