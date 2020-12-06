@@ -60,21 +60,23 @@ def find_password():
     """  """
     website = entry_website.get()
 
-    try:
-        with open("password_vault.json", mode="r") as data_file:
-            data = json.load(data_file)
-    except FileNotFoundError:
-        messagebox.showinfo(title="No data", message="No data file found")
-    else:
+    if len(website) > 0:
         try:
-            website_data = data[website]
-        except KeyError:
-            messagebox.showinfo(
-                title="No data", message=f"No information exist for {website}")
+            with open("password_vault.json", mode="r") as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            messagebox.showinfo(title="Error", message="No data file found")
         else:
-            messagebox.showinfo(title=website,
-                                message=f"Website: {website}\nPassword: {website_data['password']}",
-                                icon="question")  # icon = question for no sound
+            if website in data:
+                email = data[website]["email"]
+                password = data[website]["password"]
+                messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}",
+                                    icon="question")  # icon = question for no sound
+            else:
+                messagebox.showinfo(
+                    title="No data", message=f"No information for {website} exists")
+    else:
+        messagebox.showinfo(title="Error", message="No website entered")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
