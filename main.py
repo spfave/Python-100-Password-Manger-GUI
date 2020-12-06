@@ -30,14 +30,18 @@ def save_password():
             },
         }
 
-        with open("password_vault.json", mode="r") as file:
-            data = json.load(file)  # Reading old data
+        try:
+            with open("password_vault.json", mode="r") as data_file:
+                data = json.load(data_file)  # Read old data
+        except FileNotFoundError:
+            with open("password_vault.json", mode="w") as data_file:
+                json.dump(new_data, data_file, indent=4)  # Saving updated data
+        else:
             data.update(new_data)   # Updating old data with new data
-
-        with open("password_vault.json", mode="w") as file:
-            json.dump(new_data, file, indent=4)  # Saving updated data
-
-        reset_entry()
+            with open("password_vault.json", mode="w") as data_file:
+                json.dump(data, data_file, indent=4)  # Saving updated data
+        finally:
+            reset_entry()
 
 
 def check_validation(website, email_username, password):
