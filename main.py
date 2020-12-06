@@ -55,6 +55,28 @@ def reset_entry():
     entry_website.focus()
 
 
+# ---------------------------- FIND PASSWORD -------------------------- #
+def find_password():
+    """  """
+    website = entry_website.get()
+
+    try:
+        with open("password_vault.json", mode="r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="No data", message="No data file found")
+    else:
+        try:
+            website_data = data[website]
+        except KeyError:
+            messagebox.showinfo(
+                title="No data", message=f"No information exist for {website}")
+        else:
+            messagebox.showinfo(title=website,
+                                message=f"Website: {website}\nPassword: {website_data['password']}",
+                                icon="question")  # icon = question for no sound
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 # Root window
 root = Tk()
@@ -92,9 +114,9 @@ entry_password = Entry(frame, width=30)
 entry_password.grid(row=2, column=1)
 
 # Buttons
-button_password_search = Button(frame, text="Search", width=15)
+button_password_search = Button(
+    frame, text="Search", command=find_password, width=15)
 button_password_search.grid(row=0, column=2)
-
 button_password_generate = Button(
     frame, text="Generate Password", command=fill_password)
 button_password_generate.grid(row=2, column=2)
