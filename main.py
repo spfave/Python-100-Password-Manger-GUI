@@ -1,11 +1,15 @@
 from tkinter import *
 from tkinter import messagebox
 from password_generator import generate_password
+import pyperclip
 
 
 # ---------------------------- PASSWORD GENERATOR --------------------- #
 def fill_password():
-    entry_password.insert(0, generate_password())
+    new_password = generate_password()
+    entry_password.delete(0, END)
+    entry_password.insert(0, new_password)
+    pyperclip.copy(new_password)
 
 
 # ---------------------------- SAVE PASSWORD -------------------------- #
