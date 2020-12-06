@@ -13,13 +13,22 @@ def save_password():
     email_username = entry_email_username.get()
     password = entry_password.get()
 
-    entry_ok = messagebox.askokcancel(
-        title=website, message=f"You entered the following details: \nEmail: {email_username} \nPassword: {password} \nIs this what you want to save?")
+    if check_validation(website, email_username, password):
+        messagebox.showerror(title="Empty Field",
+                             message="You can't leave any field empty")
+    else:
+        entry_ok = messagebox.askokcancel(
+            title=website, message=f"You entered the following details: \nEmail: {email_username} \nPassword: {password} \nIs this what you want to save?")
 
-    if entry_ok:
-        with open("password_vault.txt", mode="a") as file:
-            file.write(f"{website} | {email_username} | {password}\n")
-        reset_entry()
+        if entry_ok:
+            with open("password_vault.txt", mode="a") as file:
+                file.write(f"{website} | {email_username} | {password}\n")
+            reset_entry()
+
+
+def check_validation(website, email_username, password):
+    if len(website) == 0 or len(email_username) == 0 or len(password) == 0:
+        return True
 
 
 def reset_entry():
